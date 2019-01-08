@@ -1,0 +1,102 @@
+syntax = "proto2";
+
+message CardData {
+		required string cardIndex = 1; //牌的编号
+}
+
+message AccountData {
+		required sint32 accountSeatId = 1; //座位id
+		required sint32 accountSex = 2;		//账号性别
+		required string accountGead = 3;		//账号头像
+		required sint32	accountGandcardCount = 4;	//账号的手牌
+		required sint32	accountId = 5;	//账号ID
+}
+
+//发送游戏属性
+message g2c_game_data {
+	repeated AccountData gameAccountData	= 1;//游戏里账号的数据
+	required sint32 gameState				= 2;//游戏的状态0为未开始,1为开始
+	required string gameTableId			= 3;//游戏桌子id
+	required sint32 gameRound				= 4;//游戏回合
+	required sint32 gameTableAccountUpper= 5;//游戏人数上限
+	required sint32 gameTurnerSeatId	= 6;//游戏当前出牌座位id
+	required sint32 gameRemainCardCount	= 7;//账号剩余牌数
+	required string gameIndex				= 8;//游戏编号
+	required sint32 accountId				= 9;//登录游戏的账号id
+}
+
+//玩家摸到的牌
+message g2c_draw_card {
+	repeated string cardIndex				= 1;//账号的手牌				 
+}
+
+//玩家的手牌
+message g2c_hand_card {
+	required sint32 accountId				= 1;//账号id
+	repeated string accountGandCard				= 2;//账号的手牌				 
+}
+
+//当前剩余的牌数
+message g2c_boardcast_remain_card {
+	required sint32 gameRemainCardCount	= 1;//游戏剩余牌数量
+}
+
+//当前轮到谁出牌
+message g2c_boardcast_turner_id {
+	required sint32 turnerSeatId	= 1;//座位id
+}
+
+//玩家出牌
+message g2c_boardcast_account_out_card {
+	required string cardIndex	= 1;//牌的编号
+	required string cardDirection	= 2;//牌的朝向
+}
+
+//当前摸牌的玩家
+message g2c_boardcast_draw_card {
+	required string cardIndex	= 1;//牌的编号
+	required string cardDirection = 2;//牌的朝向
+	required sint32 accountId = 3;//出牌的玩家id
+}
+
+message GameGroupResult {
+	required sint32 accountId = 1; //账号id
+	required sint32 gamePoint = 2; //游戏积分
+}
+
+//一局的结果(n盘)
+message g2c_boardcast_game_group_result {
+	repeated GameGroupResult gameGroupResult	= 1;//游戏结果
+}
+
+message GameResult {
+		required sint32 accountId = 1; //账号id
+		required sint32 gamePoint = 2; //游戏积分
+}
+
+//一盘的结果
+message g2c_boardcast_game_result {
+	repeated GameResult gameResult	= 1;//游戏结果
+}
+
+//当前出牌回合奖励
+message g2c_boardcast_outcard_point_reward {
+	required sint32 accountId	= 1;//账号id
+	required sint32 gamePoint	= 2;//游戏积分
+}
+
+//游戏里的通知
+message g2c_boardcast_notice {
+	required string messageContent = 1;//消息内容
+}
+
+//游戏的错误提示
+message g2c_error {
+	required string errorContent = 1;//消息内容
+}
+
+//开始游戏
+message g2c_start_game {
+	required sint32 gameRound = 1;//当前回合
+	required sint32 turnerSeatId = 2;//当前出牌座位id
+}

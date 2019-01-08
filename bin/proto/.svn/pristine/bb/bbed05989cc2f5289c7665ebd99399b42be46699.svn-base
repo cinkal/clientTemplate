@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+message c2s_login {
+	required sint32 loginId = 1;	//loops获得的uid或账号或fb获得的uid
+	optional string password = 2; //密码
+	optional string accessToken = 3;	//平台拿到的token
+	optional string gameToken = 4;  //游戏方生成的token
+	optional string version = 5;	//版本号
+	required sint32 platform = 6; //渠道，先定0为loops
+	optional sint32 hostId = 7; //主播账号id
+	required sint32 accountName = 8; //账号名称
+	optional sint32 accountHead = 9; //账号头像
+}
+
+message c2s_close_game {
+	required string gameTableId = 1;	//游戏的桌子ID
+}
+
+message c2s_room_create {
+	required sint32 maxPlayer = 1;
+	required sint32 enterGold = 2;
+	required sint32 isJoin = 3;
+	required sint32 hostId = 4;
+}
+
+message c2s_room_join {
+	required sint32 roomid = 1;
+	required sint32 hostId = 2;
+}
+
+message c2s_room_start_game {
+	required sint32 roomid = 1;
+}
+
+message c2s_room_close {
+}

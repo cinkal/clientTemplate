@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8' />
+	<title>www.layabox.com</title>
+	<meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
+	/>
+	<meta name="renderer" content="webkit"/>
+	<meta name='apple-mobile-web-app-capable' content='yes' />
+	<meta name='full-screen' content='true' />
+	<meta name='x5-fullscreen' content='true' />
+	<meta name='360-fullscreen' content='true' />
+	<meta name="laya" screenorientation ="landscape"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv='expires' content='0' />
+	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+</head>
+
+<body>
+	<!--以下引用了常用类库，如果不使用，可以删除-->
+	<!--LOOPS SDK -->
+	<script type="text/javascript" src="libs/external/loopsGameSDK.js"></script>
+	<script type="text/javascript" src="libs/bytebuffer.js"></script>
+	<script type="text/javascript" src="libs/protobuf.js"></script>
+	<!--加载阿拉伯语语法A/B形式-->
+	<script type="text/javascript" src="libs/external/ArabicReshaper.js"></script>
+	<!--核心包，封装了显示对象渲染，事件，时间管理，时间轴动画，缓动，消息交互,socket，本地存储，鼠标触摸，声音，加载，颜色滤镜，位图字体等-->
+	<script type="text/javascript" src="libs/laya.core.js"></script>
+	<!--提供了微信小游戏的适配-->
+	<script type="text/javascript" src="libs/laya.wxmini.js"></script>
+	<!--封装了webgl渲染管线，如果使用webgl渲染，可以在初始化时调用Laya.init(1000,800,laya.webgl.WebGL);-->
+    <script type="text/javascript" src="libs/laya.webgl.js"></script>
+	<!--是动画模块，包含了swf动画，骨骼动画等-->
+    <script type="text/javascript" src="libs/laya.ani.js"></script>
+	<!--包含更多webgl滤镜，比如外发光，阴影，模糊以及更多-->
+    <script type="text/javascript" src="libs/laya.filter.js"></script>
+	<!--封装了html动态排版功能-->
+    <script type="text/javascript" src="libs/laya.html.js"></script>
+	<!--粒子类库-->
+    <script type="text/javascript" src="libs/laya.particle.js"></script>
+	<!--提供tileMap解析支持-->
+    <script type="text/javascript" src="libs/laya.tiledmap.js"></script>
+	<!--提供了制作UI的各种组件实现-->
+    <script type="text/javascript" src="libs/laya.ui.js"></script>
+	<!-- 物理引擎matter.js -->
+	<!--用户自定义顺序文件添加到这里-->
+	<!--jsfile--Custom-->
+	<!--jsfile--Custom-->
+	<!--自定义的js(src文件夹下)文件自动添加到下面jsfile模块标签里面里-->
+	<!--删除标签，ide不会自动添加js文件，请谨慎操作-->
+	<!--jsfile--startTag-->
+	<script src="js/Utils/UtilString.js"></script>
+	<script src="js/Utils/UtilData.js"></script>
+	<script src="js/Utils/SdkUtils.js"></script>
+	<script src="js/Utils/LocalUtils.js"></script>
+	<script src="js/Protocol/Client_Server.p.js"></script>
+	<script src="js/NetWork/TcpQueue.js"></script>
+	<script src="js/NetWork/TcpClient.js"></script>
+	<script src="js/NetWork/NetState.js"></script>
+	<script src="js/NetWork/NetPacket.js"></script>
+	<script src="js/NetWork/NetHelper.js"></script>
+	<script src="js/NetWork/NetEvent.js"></script>
+	<script src="js/NetWork/HttpHelper.js"></script>
+	<script src="js/Models/ProductData.js"></script>
+	<script src="js/Models/Player.js"></script>
+	<script src="js/Models/GameEvent.js"></script>
+	<script src="js/Manager/MusicManager.js"></script>
+	<script src="js/Manager/BattleManager.js"></script>
+	<script src="js/Event/EventDefine.js"></script>
+	<script src="js/Config/LRecharge.js"></script>
+	<script src="js/Config/LoginConfig.js"></script>
+	<script src="js/Config/LLanguageEN.js"></script>
+	<script src="js/Config/CommonConfig.js"></script>
+	<script src="js/Config/BattleSceneConfig.js"></script>
+	<script src="js/Common/Vector.js"></script>
+	<script src="js/Common/Stack.js"></script>
+	<script src="js/Common/Size.js"></script>
+	<script src="js/Common/Queue.js"></script>
+	<script src="js/Common/PolygonUtil.js"></script>
+	<script src="js/Common/Map.js"></script>
+	<script src="js/Common/List.js"></script>
+	<script src="js/Common/Common.js"></script>
+	<script src="js/Common/Color.js"></script>
+	<script src="js/Common/Collide.js"></script>
+	<script src="js/Base/ViewDefine.js"></script>
+	<script src="js/Base/SceneDefine.js"></script>
+	<script src="js/Base/Director.js"></script>
+	<script src="js/Actions/TweenFunction.js"></script>
+	<script src="js/Actions/ActionManager.js"></script>
+	<script src="js/Actions/Action.js"></script>
+	<script src="js/Actions/FiniteTimeAction.js"></script>
+	<script src="js/Actions/ActionInterval.js"></script>
+	<script src="js/Actions/ActionCatmullRom.js"></script>
+	<script src="js/Actions/ActionEase.js"></script>
+	<script src="js/Actions/ActionInstant.js"></script>
+	<script src="js/Base/Scheduler.js"></script>
+	<script src="js/Manager/InterfaceGameMgr.js"></script>
+	<script src="js/Manager/GameManager.js"></script>
+	<script src="js/Manager/ResourceManage.js"></script>
+	<script src="js/Manager/UIManager.js"></script>
+	<script src="js/NetWork/NetDispatcher.js"></script>
+	<script src="js/NetWork/SeverDispatcher.js"></script>
+	<script src="js/Scene/Base/Scene.js"></script>
+	<script src="js/Scene/Base/TransitionScene.js"></script>
+	<script src="js/Scene/BattleScene.js"></script>
+	<script src="js/Views/BaseView.js"></script>
+	<script src="js/Scene/FReconnect.js"></script>
+	<script src="js/Scene/LoginScene.js"></script>
+	<script src="js/ui/layaUI.max.all.js"></script>
+	<script src="js/Views/ComfirmDialog.js"></script>
+	<script src="js/Views/LoginSceneUI.js"></script>
+	<script src="js/Views/MsgToast.js"></script>
+	<script src="js/Views/ReconnectView.js"></script>
+	<!--jsfile--endTag-->
+
+	<!--启动类添加到这里-->
+	<!--jsfile--Main-->
+	<script src="js/Main.js"></script>
+	<!--jsfile--Main-->
+</body>
+</html>

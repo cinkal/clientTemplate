@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+message c2s_login {
+	required sint32 loginId = 1;	//loops获得的uid或账号或fb获得的uid
+	optional string password = 2; //密码
+	optional string accessToken = 3;	//平台拿到的token
+	optional string gameToken = 4;  //游戏方生成的token
+	optional string version = 5;	//版本号
+	required sint32 platform = 6; //渠道，先定0为loops
+	optional sint32 hostId = 7; //主播账号id
+}
+
+message c2s_close_game {
+	required string gameTableId = 1;	//游戏的桌子ID
+}

@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+message s2c_login {
+	required sint32 result = 1;
+	optional sint64 playerId = 2;
+	optional string gameToken = 3; //游戏方的token
+	optional sint32 seed = 4;
+}

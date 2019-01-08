@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+message c2s_arena_list {
+}
+
+message c2s_join_arena {
+	required sint32 arenaIndex = 1;	//匹配场的编号
+}

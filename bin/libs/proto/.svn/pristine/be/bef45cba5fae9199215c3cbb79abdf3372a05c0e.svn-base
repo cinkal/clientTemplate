@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+message c2g_out_card {
+	required string cardIndex = 1;	//出牌的编号
+	required string cardDirection = 2;//选择的接龙的朝向
+}
+
+message c2g_touch_card {
+	required sint32 cardPos = 1;	//牌的下标
+}
+
+message c2g_leave_game {
+}

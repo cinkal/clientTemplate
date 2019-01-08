@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message s2c_arena_list {
+	repeated string arenaDataList = 1;
+}
+

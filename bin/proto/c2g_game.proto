@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+message c2g_out_card {
+	required string cardIndex = 1;	//出牌的编号
+	required string cardDirection = 2;//选择的接龙的朝向
+}
+
+message c2g_touch_card {
+	required sint32 cardPos = 1;	//牌的下标
+}
+
+//跳过此回合请求
+message c2g_blocked_round {
+}
+
+message c2g_request_exchange_card {
+}
+
+message c2g_exchange_card {
+	required string cardIndex = 1;	//需要换的牌的编号
+}

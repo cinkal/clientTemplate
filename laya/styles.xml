@@ -1,0 +1,6 @@
+<res>
+   <item name="res/BattleScene/BattleView/frame.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="res/BattleScene/BattleView/Selected4.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="res/BattleScene/Cards/line.png" type="null" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="res/BattleScene/Cards/surface.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+</res>

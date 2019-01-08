@@ -1,0 +1,100 @@
+syntax = "proto2";
+
+message c2s_login {
+	required sint32 loginId = 1;	//loops获得的uid或账号或fb获得的uid
+	optional string password = 2; //密码
+	optional string accessToken = 3;	//平台拿到的token
+	optional string gameToken = 4;  //游戏方生成的token
+	optional string version = 5;	//版本号
+	required sint32 platform = 6; //渠道，先定0为loops
+	optional sint32 hostId = 7; //主播账号id
+	required string accountName = 8; //账号名称
+	optional string accountHead = 9; //账号头像
+}
+
+message c2s_close_game {
+	required string gameTableId = 1;	//游戏的桌子ID
+}
+
+message c2s_room_create {
+	required sint32 maxPlayer = 1;
+	required sint32 enterGold = 2;
+	required sint32 isJoin = 3;
+	required sint32 hostId = 4;
+	required string configId = 5;
+	required string productid = 6;
+	required string purchasedata = 7;
+	required string sig = 8;
+	optional string playerids = 9;
+	optional string visitids = 10;
+}
+
+message c2s_room_join {
+	required sint32 roomid = 1;
+	required sint32 hostId = 2;
+	required string configId = 3;
+	required string productid = 4;
+	required string purchasedata = 5;
+	required string sig = 6;
+}
+
+message c2s_room_start_game {
+	required sint32 roomid = 1;
+}
+
+message c2s_room_restart_room {
+	required sint32 accountId = 1;
+	required sint32 hostId = 2;
+	optional string playerids = 3;
+	optional string visitids = 4;
+	optional sint32 settingMaxplayer = 5;
+	optional sint32 settingEntergold = 6;
+	optional sint32 settingHostjoin = 7;
+	required string configId = 8;
+	required string productid = 9;
+	required string purchasedata = 10;
+	required string sig = 11;
+}
+
+message c2s_room_gameover_report {
+	required sint32 accountId = 1;
+	required sint32 hostId = 2;
+	optional string playerids = 3;
+	optional string visitids = 4;
+	optional sint32 settingMaxplayer = 5;
+	optional sint32 settingEntergold = 6;
+	optional sint32 settingHostjoin = 7;
+}
+
+message c2s_room_close {
+}
+
+message c2s_store_list {
+}
+
+message c2s_store_buy {
+	required string configId = 1;
+	required string productid = 2;
+	required string purchasedata = 3;
+	required string sig = 4;
+}
+
+message c2s_store_item_buy {
+	required string configId = 1;
+	required string productid = 2;
+	required string purchasedata = 3;
+	required string sig = 4;
+}
+
+message c2s_player_info {
+}
+
+message c2s_leave_game {
+}
+
+message c2s_heartbeat {
+}
+
+message c2s_client_log {
+	required string content = 1;//日志内容
+}

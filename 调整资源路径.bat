@@ -1,0 +1,1 @@
+ .\lua\lua.exe .\MoveAtlas.lua

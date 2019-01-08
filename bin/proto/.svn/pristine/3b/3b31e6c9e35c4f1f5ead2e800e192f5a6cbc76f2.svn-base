@@ -1,0 +1,37 @@
+syntax = "proto2";
+
+message s2c_login {
+	required sint32 result = 1;
+	optional sint64 playerId = 2;
+	optional string gameToken = 3; //游戏方的token
+	optional sint32 seed = 4;
+}
+
+message s2c_game_state {
+	required string playerids = 1;
+	optional sint32 state = 2;
+	optional sint32 type = 3;
+	optional sint32 exp = 4;
+	optional sint32 level = 5;
+	optional sint32 gem = 6;
+	optional sint32 isFirsttoday = 7;
+	optional sint32 enterGold = 8;
+	optional sint32 maxPlayer = 9;
+	optional sint32 roomid = 10;
+	optional sint32 gold = 11;
+}
+
+message s2c_room_create {
+}
+
+message s2c_room_info {
+}
+
+message s2c_room_start_game {
+}
+
+message s2c_room_close {
+}
+
+
+

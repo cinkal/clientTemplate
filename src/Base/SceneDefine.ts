@@ -1,0 +1,6 @@
+enum VIEWID {
+    VIEWID_NORMAL = -1,
+    VIEWID_BASEVIEW = 0,
+    VIEWID_EDITOR = 1,
+    VIEWID_POND = 2,
+}

@@ -1,0 +1,172 @@
+syntax = "proto2";
+
+message CardData {
+		required string cardIndex = 1; //牌的编号
+}
+
+message AccountData {
+		required sint32 accountSeatId = 1; //座位id
+		required sint32 accountSex = 2;		//账号性别
+		required string accountHead = 3;		//账号头像
+		required sint32	accountHandcardCount = 4;	//账号的手牌
+		required sint32	accountId = 5;	//账号ID
+		required sint32 accountPoint = 6;//当前积分
+		required string accountName = 7;//用户名
+		required sint32 escapeState = 8;//1为离开游戏，0为正在玩
+}
+
+message GameDirectionCardDict {
+		repeated string cardIndexList = 1;//牌的队列
+		required string cardDirection = 2;//牌的方向
+}
+
+//发送游戏属性
+message g2c_game_data {
+	repeated AccountData gameAccountData	= 1;//游戏里账号的数据
+	required sint32 gameState				= 2;//游戏的状态0为未开始,1为开始
+	required string gameTableId			= 3;//游戏桌子id
+	required sint32 gameRound				= 4;//游戏回合
+	required sint32 gameTableAccountUpper= 5;//游戏人数上限
+	required sint32 gameTurnerSeatId	= 6;//游戏当前出牌座位id
+	required sint32 gameRemainCardCount	= 7;//账号剩余牌数
+	required string gameIndex				= 8;//游戏编号
+	required sint32 accountId				= 9;//登录游戏的账号id
+	repeated sint32 gameCardPosList = 10;//牌的位置列表
+	repeated GameDirectionCardDict gameDirectionCardDict = 11;//各个方向的数据
+	optional string gameCenterCard				= 12;//中心牌
+	required sint32 gameAccountType				= 13;//0为未知,1为主播,2玩家,3观众
+	required sint32 outCardOverTime 				= 14;//出牌超时
+	required sint32 touchCardOverTime 			= 15;//摸牌超时
+	required string gameOptionResultDict 		= 16;//游戏的选项
+}
+
+//玩家摸到的牌
+message g2c_draw_card {
+	required string cardIndex				= 1;//账号的手牌	
+}
+
+//玩家的手牌
+message g2c_hand_card {
+	required sint32 accountId				= 1;//账号id
+	repeated string accountHandCard				= 2;//账号的手牌				 
+}
+
+//当前剩余的牌数
+message g2c_boardcast_remain_card {
+	required sint32 gameRemainCardCount	= 1;//游戏剩余牌数量
+}
+
+//当前轮到谁出牌
+message g2c_boardcast_turner_id {
+	required sint32 turnerSeatId	= 1;//座位id
+}
+
+//玩家出牌
+message g2c_boardcast_account_out_card {
+	required string cardIndex	= 1;//牌的编号
+	required string cardDirection	= 2;//牌的朝向
+	required sint32 accountId	= 3;//玩家id
+}
+
+//当前摸牌的玩家
+message g2c_boardcast_draw_card {
+	required sint32 accountId = 1;//出牌的玩家id
+	required sint32 cardPos	= 2;//牌的位置
+}
+
+message GameGroupResult {
+	required sint32 accountId = 1; //账号id
+	required sint32 gamePoint = 2; //游戏积分
+}
+
+//一局的结果(n盘)
+message g2c_boardcast_game_group_result {
+	repeated GameGroupResult gameGroupResult	= 1;//游戏结果
+}
+
+message GameResult {
+		required sint32 accountId = 1; //账号id
+		required sint32 gamePoint = 2; //游戏积分
+		repeated string accountHandCard = 3;//玩家的手牌
+}
+
+message LoserResult {
+		required sint32 accountId = 1; //账号id
+		required sint32 gamePoint = 2; //游戏积分
+}
+
+//一盘的结果
+message g2c_boardcast_game_result {
+	repeated GameResult gameResult	= 1;//游戏结果
+	repeated LoserResult loserResult	= 2;//失败者结果
+	required sint32 isLastRound = 3;//是否最后一盘
+	required sint32 winnerId = 4;//胜利者id
+}
+
+//当前出牌回合奖励
+message g2c_boardcast_outcard_point_reward {
+	required sint32 accountId	= 1;//账号id
+	required sint32 gamePoint	= 2;//游戏积分
+}
+
+//游戏里的通知
+message g2c_boardcast_notice {
+	required string messageContent = 1;//消息内容
+}
+
+//开始游戏
+message g2c_start_game {
+	required sint32 gameRound = 1;//当前回合
+	repeated sint32 gameCardPosList = 2;//牌的位置列表
+	required sint32 gameInitHandcardCount = 3;//游戏初始牌数
+}
+
+//广播由于没的摸牌,导致跳过的协议
+message g2c_boardcast_blocked_round {
+	required sint32 turnerSeatId = 1;//当前出牌座位id
+}
+
+//广播开始倒计时
+message g2c_boardcast_start_count_time {
+	required sint32 turnerSeatId = 1;//当前出牌座位id
+	required sint32 countTimeStyle = 2;//倒计时类型1为出牌，2为摸牌
+}
+
+//广播托管协议
+message g2c_boardcast_account_offline {
+	required sint32 accountId = 1;//断线托管账号id
+}
+
+//广播玩家退出协议
+message g2c_boardcast_account_trust {
+	required sint32 accountId = 1;//账号id
+}
+
+//换牌失败
+message g2c_exchange_failed {
+	repeated sint32 gameCardPosList = 1;//牌的位置列表
+	repeated string accountHandCard = 2;//玩家的手牌
+	required sint32 errorCode = 3;//错误码,1为达到上限,2为扣除失败,3为换的牌不在玩家手牌,4为底牌为0
+}
+
+//换牌成功
+message g2c_exchange_success {
+	required sint32 beforeCard = 1;//替换前的牌
+	required sint32 afterCard = 2;//替换后的牌
+}
+
+//刷新玩家的换牌状态
+message g2c_refresh_account_exchange {
+	required sint32 goodsId = 1;//商品id
+	required sint32 exchangeStartTime = 2;//兑换开始时间，当为0的时候代表没有计时器
+	required sint32 exchangeElapse = 3;//倒计时持续时间
+	required sint32 exchangeUpper = 4;//兑换牌的上限
+	required sint32 exchangeTimes = 5;//玩家当前兑换次数
+}
+
+//开始换牌倒计时
+message g2c_exchange_timer {
+	required sint32 goodsId = 1;//商品id
+	required sint32 exchangeStartTime = 2;//兑换开始时间，当为0的时候代表没有计时器
+	required sint32 exchangeElapse = 3;//倒计时持续时间
+}

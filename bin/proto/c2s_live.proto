@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+message c2s_query_live_config {
+}
+
+message c2s_create_live_game {
+	required string optionResultDict = 1;	//live模式的选项
+}
+
+message c2s_join_live_game {
+	required sint32 hostId = 1;	//主播id
+}
+
+message c2s_start_live_game {
+}
+
+message c2s_leave_live_game {
+}

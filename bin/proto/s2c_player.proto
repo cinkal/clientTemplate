@@ -1,0 +1,132 @@
+syntax = "proto2";
+
+message s2c_login {
+	required sint32 result = 1;
+	required string loginType = 2;
+	optional sint64 playerId = 3;
+	optional string gameToken = 4; //游戏方的token
+	optional sint32 seed = 5;
+	optional sint64 roomId = 6;
+	optional string liveData = 7;
+	optional sint32 gameStartFlag = 8;//游戏开始状态
+	optional sint32 serverTime = 9;//服务器时间
+	optional string playerName = 10;//玩家名字
+	optional string playerHead = 11;//玩家头像
+	optional sint32 closeModule = 12;//关闭测试模块,0为没有,1为关闭换牌功能
+}
+
+message s2c_game_state {
+	required string playerids = 1;
+	optional sint32 state = 2;
+	optional sint32 type = 3;
+	optional sint32 exp = 4;
+	optional sint32 level = 5;
+	optional sint32 gem = 6;
+	optional sint32 isFirsttoday = 7;
+	optional sint32 enterGold = 8;
+	optional sint32 maxPlayer = 9;
+	optional sint32 roomid = 10;
+	optional sint32 gold = 11;
+}
+
+message s2c_room_create {
+	required sint32 result = 1;
+	required string playerids = 2;
+	required sint32 state = 3;
+	required sint32 type = 4;
+	required sint32 hostId = 5;
+	required sint32 enterGold = 6;
+	required sint32 roomid = 7;
+	required sint32 maxPlayer = 8;
+}
+
+message s2c_room_join {
+	required sint32 result = 1;
+	required string playerids = 2;
+	required sint32 state = 3;
+	required sint32 type = 4;
+	required sint32 hostId = 5;
+	required sint32 enterGold = 6;
+	required sint32 roomid = 7;
+	required sint32 maxPlayer = 8;
+	optional sint32 haveGameid = 9;//是否有房间
+	optional sint32 gameStartFlag = 10;//房间的战斗状态
+	optional sint32 playerNum = 11;//房间参与战斗的玩家数
+}
+
+message s2c_room_info {
+	required string playerids = 1;
+	required sint32 state = 2;
+	required sint32 type = 3;
+	required sint32 hostId = 4;
+	required sint32 enterGold = 5;
+	required sint32 roomid = 6;
+	required sint32 maxPlayer = 7;
+}
+
+message s2c_room_start_game {
+	required sint32 result = 1;
+	required sint32 roomid = 2;
+	required string gamedata = 3;
+}
+
+message s2c_room_restart_room {
+	required sint32 hostId = 1;
+	required sint32 roomid = 2;
+	optional sint32 hostJoin = 3;
+	required sint32 enterGold = 4;
+}
+
+message s2c_room_gameover_report {
+	required sint32 hostId = 1;
+	required sint32 roomid = 2;
+}
+
+message s2c_room_close {
+}
+
+message s2c_store_list {
+	required string config = 1;
+	optional string configVersion = 2;
+}
+
+message s2c_store_buy {
+	required string purchasedata = 1;
+	optional sint64 gold = 2;
+	optional sint64 gem = 3;
+	optional sint32 buffExpEndtime = 4;
+}
+
+message s2c_store_item_buy {
+	required sint32 ret = 1;// success=0 faile=1
+	required string configId = 2;
+	required string purchasedata = 3;
+}
+
+message s2c_player_info {
+	required sint64 gold = 1;
+	optional sint64 gem = 2;
+}
+
+//游戏的错误提示
+message s2c_error {
+	required string errorKey = 1;//消息key
+	required string errorContent = 2;//消息内容
+}
+
+message GroupAccountData {
+	required sint32 accountId = 1; 	//账号id
+	required sint32 accountPoint = 2;	//玩家积分
+	required string accountCoins = 3;	//玩家coins
+}
+
+message s2c_group_result {
+	repeated GroupAccountData groupAccountList = 1;//一局所有玩家的信息
+	repeated sint32 escapeAccountList = 2;//逃跑的账号id列表
+	required sint32 isRegularClose = 3;//是否常规关闭 1正常 0异常
+}
+
+message s2c_group_result_visits {
+	required string visitids = 1;//
+}
+
